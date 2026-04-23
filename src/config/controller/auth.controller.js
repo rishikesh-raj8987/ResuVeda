@@ -1,4 +1,4 @@
-const usreModel = require("../models/user.model")
+const userModel = require("../../models/user.model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
@@ -16,7 +16,7 @@ async function registerUserController(req,res){
         })
     }
 
-    const isUserAlreadyExist = await usreModel.findOne({
+    const isUserAlreadyExist = await userModel.findOne({
         $or:[
             {username},
             {email}
@@ -31,7 +31,7 @@ async function registerUserController(req,res){
     }
 
     const hash = await bcrypt.hash(password,10)
-    const user = await usreModel.create({
+    const user = await userModel.create({
         username,
         email,
         password:hash
@@ -60,7 +60,7 @@ async function registerUserController(req,res){
 async function loginUserController(req,res){
     const {email,password} = req.body
 
-    const user = await usreModel.findOne({email})
+    const user = await userModel.findOne({email})
     if(!user){
         return res.status(400).json({
             message: "Invalid email or password"
