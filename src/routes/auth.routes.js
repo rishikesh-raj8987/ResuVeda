@@ -8,13 +8,20 @@ const authRouter = express.Router()
  * @access Public
  */
 authRouter.post("/register",authController.registerUserController)
+/**
+ * @route POST /api/auth/login
+ * @description Login with email and password
+ * @access Public
+ */
+authRouter.post("/api/login",authController.loginUserController)
+ 
 
 
-//require all the routes here 
-const authRouter = require("./routes/auth.routes")
+// //require all the routes here 
+// const authRouter = require("./routes/auth.routes")
 
-// using all the routes here
-app.use("/api/auth",authRouter)     
+// // using all the routes here
+// app.use("/api/auth",authRouter)     
 
 
-module.exports =app
+module.exports = authRouter
