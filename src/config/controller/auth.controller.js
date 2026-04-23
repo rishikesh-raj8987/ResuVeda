@@ -89,5 +89,6 @@ async function loginUserController(req,res){
 }
 
 module.exports = {
-    registerUserController
+    registerUserController,
+    loginUserController
 }
